@@ -1,0 +1,85 @@
+﻿
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Home/Home.master.cs" Inherits="Home_Home" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="aspxtemplates"/>
+    <script src="../Scripts/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Custom CSS -->
+    <link href="css/the-big-picture.css" rel="stylesheet"/>
+    <link href="css/font-icon.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+    <!-- ============ Google fonts ============ -->
+    <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet'
+        type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300,800'
+        rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <title>Welcome to Online Exam Portal</title>
+    <!-- ============ Google fonts ============ -->
+    <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet'
+        type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300,800'
+        rel='stylesheet' type='text/css' />
+    <!-- ============ Add custom CSS here ============ -->
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="custom-bootstrap-menu" class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" href="../Admin/Home.aspx">SKILL TEST</a>
+            </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <asp:LinkButton ID="btnRegistration" CssClass="btn btn-primary" runat="server" OnClick="btnRegistration_Click"><span class="glyphicon glyphicon-user"></span> SignUp</asp:LinkButton>
+                    </li>
+                
+                <li>
+                    <a href="../Admin/Admin_Login.aspx" id="btnLogIn" class="btn btn-primary" runat="server" ><span class="glyphicon glyphicon-log-in"></span> LogIn</a>
+                    
+                </li>
+            </ul>
+            <div class="top-right">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../Admin/Home.aspx">Home</a> </li>
+                    <li><a href="ContactUs.aspx">Contact Us</a> </li>
+                    <li><a href="/contact">About Us</a> </li>
+                    &nbsp;
+                    <li>
+                        <asp:LinkButton ID="btnLogout" CssClass="btn btn-warning" runat="server" OnClick="btnLogout_Click"><span class="glyphicon glyphicon-log-out"></span>LogOut</asp:LinkButton>
+                    </li>
+                    &nbsp;
+                </ul>
+            </div>
+            
+         </div>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="PageContent" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Indra_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin_Login">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category_Info">
+          <Key>
+            <PropertyRef Name="Cat_Id" />
+          </Key>
+          <Property Name="Cat_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cat_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Cat_Img" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="oe_exams">
+          <Key>
+            <PropertyRef Name="examid" />
+          </Key>
+          <Property Name="examid" Type="int" Nullable="false" />
+          <Property Name="mid" Type="int" />
+          <Property Name="sid" Type="int" />
+          <Property Name="noq" Type="int" />
+          <Property Name="nocans" Type="int" />
+          <Property Name="stdate" Type="datetime" />
+          <Property Name="enddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="oe_members">
+          <Key>
+            <PropertyRef Name="mid" />
+          </Key>
+          <Property Name="mid" Type="int" Nullable="false" />
+          <Property Name="lname" Type="varchar" MaxLength="10" />
+          <Property Name="pwd" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fullname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dlv" Type="datetime" />
+          <Property Name="dr" Type="datetime" />
+        </EntityType>
+        <EntityType Name="oe_questions">
+          <Key>
+            <PropertyRef Name="qid" />
+          </Key>
+          <Property Name="qid" Type="int" Nullable="false" />
+          <Property Name="question" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="ans1" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ans2" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ans3" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ans4" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="cans" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="sid" Type="int" />
+        </EntityType>
+        <EntityType Name="oe_subjects">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="int" Nullable="false" />
+          <Property Name="sname" Type="varchar" MaxLength="20" />
+          <Property Name="noq" Type="int" />
+        </EntityType>
+        <EntityType Name="Ques_Info">
+          <Key>
+            <PropertyRef Name="Q_Id" />
+          </Key>
+          <Property Name="Q_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Q_Name" Type="varchar(max)" />
+          <Property Name="Option1" Type="varchar" MaxLength="50" />
+          <Property Name="Option2" Type="varchar" MaxLength="50" />
+          <Property Name="Option3" Type="varchar" MaxLength="50" />
+          <Property Name="Option4" Type="varchar" MaxLength="50" />
+          <Property Name="C_Ans" Type="int" />
+          <Property Name="Sub_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Student_Details">
+          <Key>
+            <PropertyRef Name="Student_Id" />
+          </Key>
+          <Property Name="First_Name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Address" Type="varchar(max)" Nullable="false" />
+          <Property Name="Email_Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone_Number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Student_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student_LogIn">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Security_Question" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Answer" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sub_Info">
+          <Key>
+            <PropertyRef Name="Sub_Id" />
+          </Key>
+          <Property Name="Sub_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sub_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Correct_Marks" Type="int" />
+          <Property Name="Negative_Marks" Type="int" />
+          <Property Name="Percentage_Marks" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Indra_DB.dbo.User_Info' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User_Info">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="addrs" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_oe_exams_Sub_Info">
+          <End Role="Sub_Info" Type="Self.Sub_Info" Multiplicity="0..1" />
+          <End Role="oe_exams" Type="Self.oe_exams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Info">
+              <PropertyRef Name="Sub_Id" />
+            </Principal>
+            <Dependent Role="oe_exams">
+              <PropertyRef Name="sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ques_Info_Sub_Info">
+          <End Role="Sub_Info" Type="Self.Sub_Info" Multiplicity="0..1" />
+          <End Role="Ques_Info" Type="Self.Ques_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Info">
+              <PropertyRef Name="Sub_Id" />
+            </Principal>
+            <Dependent Role="Ques_Info">
+              <PropertyRef Name="Sub_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_changePass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_checkEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="question" Type="varchar" Mode="InOut" />
+          <Parameter Name="answer" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetSubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getUserDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="first" Type="varchar" Mode="InOut" />
+          <Parameter Name="last" Type="varchar" Mode="InOut" />
+          <Parameter Name="mail" Type="varchar" Mode="InOut" />
+          <Parameter Name="address" Type="varchar" Mode="InOut" />
+          <Parameter Name="phone" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="firstName" Type="varchar" Mode="In" />
+          <Parameter Name="lastName" Type="varchar" Mode="In" />
+          <Parameter Name="Address" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="SequrityQuestion" Type="varchar" Mode="In" />
+          <Parameter Name="Answer" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_userpwdchange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="current" Type="varchar" Mode="In" />
+          <Parameter Name="newpass" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Indra_DBModelStoreContainer">
+          <EntitySet Name="Admin_Login" EntityType="Self.Admin_Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category_Info" EntityType="Self.Category_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oe_exams" EntityType="Self.oe_exams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oe_members" EntityType="Self.oe_members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oe_questions" EntityType="Self.oe_questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oe_subjects" EntityType="Self.oe_subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ques_Info" EntityType="Self.Ques_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Details" EntityType="Self.Student_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_LogIn" EntityType="Self.Student_LogIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sub_Info" EntityType="Self.Sub_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Info" EntityType="Self.User_Info" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[User_Info].[uid] AS [uid], 
+[User_Info].[name] AS [name], 
+[User_Info].[addrs] AS [addrs], 
+[User_Info].[city] AS [city], 
+[User_Info].[gender] AS [gender], 
+[User_Info].[password] AS [password]
+FROM [dbo].[User_Info] AS [User_Info]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_oe_exams_Sub_Info" Association="Self.FK_oe_exams_Sub_Info">
+            <End Role="Sub_Info" EntitySet="Sub_Info" />
+            <End Role="oe_exams" EntitySet="oe_exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ques_Info_Sub_Info" Association="Self.FK_Ques_Info_Sub_Info">
+            <End Role="Sub_Info" EntitySet="Sub_Info" />
+            <End Role="Ques_Info" EntitySet="Ques_Info" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Indra_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin_Login">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category_Info">
+          <Key>
+            <PropertyRef Name="Cat_Id" />
+          </Key>
+          <Property Name="Cat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cat_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cat_Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="oe_exams">
+          <Key>
+            <PropertyRef Name="examid" />
+          </Key>
+          <Property Name="examid" Type="Int32" Nullable="false" />
+          <Property Name="mid" Type="Int32" />
+          <Property Name="sid" Type="Int32" />
+          <Property Name="noq" Type="Int32" />
+          <Property Name="nocans" Type="Int32" />
+          <Property Name="stdate" Type="DateTime" Precision="3" />
+          <Property Name="enddate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Sub_Info" Relationship="Self.FK_oe_exams_Sub_Info" FromRole="oe_exams" ToRole="Sub_Info" />
+        </EntityType>
+        <EntityType Name="oe_members">
+          <Key>
+            <PropertyRef Name="mid" />
+          </Key>
+          <Property Name="mid" Type="Int32" Nullable="false" />
+          <Property Name="lname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="pwd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dlv" Type="DateTime" Precision="3" />
+          <Property Name="dr" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="oe_questions">
+          <Key>
+            <PropertyRef Name="qid" />
+          </Key>
+          <Property Name="qid" Type="Int32" Nullable="false" />
+          <Property Name="question" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ans1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ans2" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ans3" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ans4" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cans" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="sid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="oe_subjects">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="Int32" Nullable="false" />
+          <Property Name="sname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="noq" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Ques_Info">
+          <Key>
+            <PropertyRef Name="Q_Id" />
+          </Key>
+          <Property Name="Q_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Q_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Option4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_Ans" Type="Int32" />
+          <Property Name="Sub_Id" Type="Int32" />
+          <NavigationProperty Name="Sub_Info" Relationship="Self.FK_Ques_Info_Sub_Info" FromRole="Ques_Info" ToRole="Sub_Info" />
+        </EntityType>
+        <EntityType Name="Student_Details">
+          <Key>
+            <PropertyRef Name="Student_Id" />
+          </Key>
+          <Property Name="First_Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Student_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Student_LogIn">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Security_Question" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Answer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sub_Info">
+          <Key>
+            <PropertyRef Name="Sub_Id" />
+          </Key>
+          <Property Name="Sub_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sub_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correct_Marks" Type="Int32" />
+          <Property Name="Negative_Marks" Type="Int32" />
+          <Property Name="Percentage_Marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="oe_exams" Relationship="Self.FK_oe_exams_Sub_Info" FromRole="Sub_Info" ToRole="oe_exams" />
+          <NavigationProperty Name="Ques_Info" Relationship="Self.FK_Ques_Info_Sub_Info" FromRole="Sub_Info" ToRole="Ques_Info" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User_Info">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addrs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_oe_exams_Sub_Info">
+          <End Role="Sub_Info" Type="Self.Sub_Info" Multiplicity="0..1" />
+          <End Role="oe_exams" Type="Self.oe_exams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Info">
+              <PropertyRef Name="Sub_Id" />
+            </Principal>
+            <Dependent Role="oe_exams">
+              <PropertyRef Name="sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ques_Info_Sub_Info">
+          <End Role="Sub_Info" Type="Self.Sub_Info" Multiplicity="0..1" />
+          <End Role="Ques_Info" Type="Self.Ques_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Info">
+              <PropertyRef Name="Sub_Id" />
+            </Principal>
+            <Dependent Role="Ques_Info">
+              <PropertyRef Name="Sub_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Indra_DBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin_Login" EntityType="Self.Admin_Login" />
+          <EntitySet Name="Category_Info" EntityType="Self.Category_Info" />
+          <EntitySet Name="oe_exams" EntityType="Self.oe_exams" />
+          <EntitySet Name="oe_members" EntityType="Self.oe_members" />
+          <EntitySet Name="oe_questions" EntityType="Self.oe_questions" />
+          <EntitySet Name="oe_subjects" EntityType="Self.oe_subjects" />
+          <EntitySet Name="Ques_Info" EntityType="Self.Ques_Info" />
+          <EntitySet Name="Student_Details" EntityType="Self.Student_Details" />
+          <EntitySet Name="Student_LogIn" EntityType="Self.Student_LogIn" />
+          <EntitySet Name="Sub_Info" EntityType="Self.Sub_Info" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User_Info" EntityType="Self.User_Info" />
+          <AssociationSet Name="FK_oe_exams_Sub_Info" Association="Self.FK_oe_exams_Sub_Info">
+            <End Role="Sub_Info" EntitySet="Sub_Info" />
+            <End Role="oe_exams" EntitySet="oe_exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ques_Info_Sub_Info" Association="Self.FK_Ques_Info_Sub_Info">
+            <End Role="Sub_Info" EntitySet="Sub_Info" />
+            <End Role="Ques_Info" EntitySet="Ques_Info" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_changePass">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_checkEmail">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="question" Mode="InOut" Type="String" />
+            <Parameter Name="answer" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetQuestion" ReturnType="Collection(Indra_DBModel.sp_GetQuestion_Result)">
+            <Parameter Name="sid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetSubject" ReturnType="Collection(Indra_DBModel.sp_GetSubject_Result)" />
+          <FunctionImport Name="sp_getUserDetails">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="first" Mode="InOut" Type="String" />
+            <Parameter Name="last" Mode="InOut" Type="String" />
+            <Parameter Name="mail" Mode="InOut" Type="String" />
+            <Parameter Name="address" Mode="InOut" Type="String" />
+            <Parameter Name="phone" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Indra_DBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Indra_DBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_login">
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="SequrityQuestion" Mode="In" Type="String" />
+            <Parameter Name="Answer" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_LoginCheck">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_userpwdchange">
+            <Parameter Name="current" Mode="In" Type="String" />
+            <Parameter Name="newpass" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_GetQuestion_Result">
+          <Property Type="String" Name="Q_Name" Nullable="true" />
+          <Property Type="String" Name="Option1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Option2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Option3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Option4" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="C_Ans" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetSubject_Result">
+          <Property Type="Int32" Name="Sub_Id" Nullable="false" />
+          <Property Type="String" Name="Sub_Name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Indra_DBModelStoreContainer" CdmEntityContainer="Indra_DBEntities1">
+          <EntitySetMapping Name="Admin_Login">
+            <EntityTypeMapping TypeName="Indra_DBModel.Admin_Login">
+              <MappingFragment StoreEntitySet="Admin_Login">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category_Info">
+            <EntityTypeMapping TypeName="Indra_DBModel.Category_Info">
+              <MappingFragment StoreEntitySet="Category_Info">
+                <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+                <ScalarProperty Name="Cat_Name" ColumnName="Cat_Name" />
+                <ScalarProperty Name="Cat_Img" ColumnName="Cat_Img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oe_exams">
+            <EntityTypeMapping TypeName="Indra_DBModel.oe_exams">
+              <MappingFragment StoreEntitySet="oe_exams">
+                <ScalarProperty Name="examid" ColumnName="examid" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="noq" ColumnName="noq" />
+                <ScalarProperty Name="nocans" ColumnName="nocans" />
+                <ScalarProperty Name="stdate" ColumnName="stdate" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oe_members">
+            <EntityTypeMapping TypeName="Indra_DBModel.oe_members">
+              <MappingFragment StoreEntitySet="oe_members">
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="dlv" ColumnName="dlv" />
+                <ScalarProperty Name="dr" ColumnName="dr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oe_questions">
+            <EntityTypeMapping TypeName="Indra_DBModel.oe_questions">
+              <MappingFragment StoreEntitySet="oe_questions">
+                <ScalarProperty Name="qid" ColumnName="qid" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="ans1" ColumnName="ans1" />
+                <ScalarProperty Name="ans2" ColumnName="ans2" />
+                <ScalarProperty Name="ans3" ColumnName="ans3" />
+                <ScalarProperty Name="ans4" ColumnName="ans4" />
+                <ScalarProperty Name="cans" ColumnName="cans" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oe_subjects">
+            <EntityTypeMapping TypeName="Indra_DBModel.oe_subjects">
+              <MappingFragment StoreEntitySet="oe_subjects">
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="sname" ColumnName="sname" />
+                <ScalarProperty Name="noq" ColumnName="noq" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ques_Info">
+            <EntityTypeMapping TypeName="Indra_DBModel.Ques_Info">
+              <MappingFragment StoreEntitySet="Ques_Info">
+                <ScalarProperty Name="Q_Id" ColumnName="Q_Id" />
+                <ScalarProperty Name="Q_Name" ColumnName="Q_Name" />
+                <ScalarProperty Name="Option1" ColumnName="Option1" />
+                <ScalarProperty Name="Option2" ColumnName="Option2" />
+                <ScalarProperty Name="Option3" ColumnName="Option3" />
+                <ScalarProperty Name="Option4" ColumnName="Option4" />
+                <ScalarProperty Name="C_Ans" ColumnName="C_Ans" />
+                <ScalarProperty Name="Sub_Id" ColumnName="Sub_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Details">
+            <EntityTypeMapping TypeName="Indra_DBModel.Student_Details">
+              <MappingFragment StoreEntitySet="Student_Details">
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+                <ScalarProperty Name="Student_Id" ColumnName="Student_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_LogIn">
+            <EntityTypeMapping TypeName="Indra_DBModel.Student_LogIn">
+              <MappingFragment StoreEntitySet="Student_LogIn">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Security_Question" ColumnName="Security_Question" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sub_Info">
+            <EntityTypeMapping TypeName="Indra_DBModel.Sub_Info">
+              <MappingFragment StoreEntitySet="Sub_Info">
+                <ScalarProperty Name="Sub_Id" ColumnName="Sub_Id" />
+                <ScalarProperty Name="Sub_Name" ColumnName="Sub_Name" />
+                <ScalarProperty Name="Correct_Marks" ColumnName="Correct_Marks" />
+                <ScalarProperty Name="Negative_Marks" ColumnName="Negative_Marks" />
+                <ScalarProperty Name="Percentage_Marks" ColumnName="Percentage_Marks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Indra_DBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Info">
+            <EntityTypeMapping TypeName="Indra_DBModel.User_Info">
+              <MappingFragment StoreEntitySet="User_Info">
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="addrs" ColumnName="addrs" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Indra_DBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_changePass" FunctionName="Indra_DBModel.Store.sp_changePass" />
+          <FunctionImportMapping FunctionImportName="sp_checkEmail" FunctionName="Indra_DBModel.Store.sp_checkEmail" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Indra_DBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Indra_DBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_GetQuestion" FunctionName="Indra_DBModel.Store.sp_GetQuestion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Indra_DBModel.sp_GetQuestion_Result">
+                <ScalarProperty Name="Q_Name" ColumnName="Q_Name" />
+                <ScalarProperty Name="Option1" ColumnName="Option1" />
+                <ScalarProperty Name="Option2" ColumnName="Option2" />
+                <ScalarProperty Name="Option3" ColumnName="Option3" />
+                <ScalarProperty Name="Option4" ColumnName="Option4" />
+                <ScalarProperty Name="C_Ans" ColumnName="C_Ans" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSubject" FunctionName="Indra_DBModel.Store.sp_GetSubject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Indra_DBModel.sp_GetSubject_Result">
+                <ScalarProperty Name="Sub_Id" ColumnName="Sub_Id" />
+                <ScalarProperty Name="Sub_Name" ColumnName="Sub_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getUserDetails" FunctionName="Indra_DBModel.Store.sp_getUserDetails" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Indra_DBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Indra_DBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Indra_DBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Indra_DBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_login" FunctionName="Indra_DBModel.Store.Sp_login" />
+          <FunctionImportMapping FunctionImportName="sp_LoginCheck" FunctionName="Indra_DBModel.Store.sp_LoginCheck" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Indra_DBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Indra_DBModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_userpwdchange" FunctionName="Indra_DBModel.Store.sp_userpwdchange" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
